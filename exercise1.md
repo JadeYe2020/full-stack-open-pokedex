@@ -12,4 +12,4 @@ Buddy, TeamCity, Bamboo CI, GitLab CI, Codeship (https://xperti.io/blogs/continu
 
 ## Would this setup be better in a self-hosted or a cloud-based environment? Why? What information would you need to make that decision?
 
-It is better in a cloud-based environment, since we are a team of about 6 people buiing a small to medium application project, unless the project has some very special requirements, like a need for graphics card to run test.
+It's better in a cloud-based environment, since we are a team of about 6 people buiing a small to medium application project, unless the project has some very special requirements, like a need for graphics card to run test.
