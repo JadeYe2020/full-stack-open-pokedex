@@ -24,6 +24,8 @@ jobs:
         run: npm run eslint
       - name: build
         run: npm run build
+      - name: test
+        run: npm run test
       - name: build failure Discord notification
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ failure() }}
@@ -33,8 +35,6 @@ jobs:
           severity: error
           description: Build failed
           details: 'commit $env.COMMIT_URL broke the build'
-      - name: test
-        run: npm run test
       - name: e2e tests
         uses: cypress-io/github-action@v4
         with:
