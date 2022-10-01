@@ -24,6 +24,13 @@ jobs:
         run: npm run eslint
       - name: build
         run: npm run build
+      - name: build failure Discord notification
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ failure() }}
+        with:
+          severity: error
+          description: Build failed
+          details: `commit ${{ github.event.head_commit.url }} broke the build`
       - name: test
         run: npm run test
       - name: e2e tests
@@ -39,7 +46,7 @@ jobs:
         run: flyctl deploy --remote-only
       - name: deploy success Discord notification
         uses: rjstone/discord-webhook-notify@v1
-        if: ${{ success() }}
+        if: ${{ github.event_name == 'push' && !contains(join(env.COMMIT_MESSAGES, ' '), '#skip') && success() }}
         with:
           severity: info
           description: A new version of Pokedex deployed
