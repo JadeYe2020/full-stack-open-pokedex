@@ -27,10 +27,12 @@ jobs:
       - name: build failure Discord notification
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ failure() }}
+        env:
+          COMMIT_URL: ${{ toJson(github.event.head_commit.url) }}
         with:
           severity: error
           description: Build failed
-          details: `commit ${{ github.event.head_commit.url }} broke the build`
+          details: 'commit $env.COMMIT_URL broke the build'
       - name: test
         run: npm run test
       - name: e2e tests
