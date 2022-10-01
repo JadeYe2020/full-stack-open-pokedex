@@ -37,6 +37,14 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         if: ${{github.event_name == 'push' && !contains(join(env.COMMIT_MESSAGES, ' '), '#skip')}}
         run: flyctl deploy --remote-only
+      - name: deploy success Discord notification
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ success() }}
+        with:
+          severity: info
+          description: A new version of Pokedex deployed
+          details: 'to https://fullstackopen-cicd.fly.dev/ by Jade'
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     env:
       COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
