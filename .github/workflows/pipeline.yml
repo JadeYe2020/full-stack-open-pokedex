@@ -35,6 +35,7 @@ jobs:
           severity: error
           description: Build failed
           details: 'commit $env.COMMIT_URL broke the build'
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: e2e tests
         uses: cypress-io/github-action@v4
         with:
