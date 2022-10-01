@@ -32,7 +32,7 @@ jobs:
         with:
           severity: error
           description: Build failed
-          details: ${{ format('commit {0} broke the build', github.event.head_commit.url) }}
+          details: ${{ format('commit {0} broke the build', github.event.commits[0].url) }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: e2e tests
         uses: cypress-io/github-action@v4
