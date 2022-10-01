@@ -26,3 +26,7 @@ jobs:
         env:
           COMMIT_URL: ${{ github.event.head_commit.url }}
         run: echo "$COMMIT_URL"
+      - name: commit url 2
+        env:
+          COMMIT_URL: ${{ github.event.commits[0].url }}
+        run: echo "$COMMIT_URL"
