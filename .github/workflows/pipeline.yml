@@ -29,12 +29,10 @@ jobs:
       - name: build failure Discord notification
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ failure() }}
-        env:
-          COMMIT_URL: ${{ toJson(github.event.head_commit.url) }}
         with:
           severity: error
           description: Build failed
-          details: ${{ format('commit {0} broke the build', env.COMMIT_URL) }}
+          details: ${{ format('commit {0} broke the build', github.event.head_commit.url) }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: e2e tests
         uses: cypress-io/github-action@v4
