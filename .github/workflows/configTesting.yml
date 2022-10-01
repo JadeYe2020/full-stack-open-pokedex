@@ -22,3 +22,7 @@ jobs:
       - name: commit messages
         if: ${{!contains(join(env.COMMIT_MESSAGES, ''), '#skip')}}
         run: echo "$COMMIT_MESSAGES"
+      - name: commit url
+        env:
+          COMMIT_URL: ${{ github.event.head_commit.url }}
+        run: echo "$COMMIT_URL"
