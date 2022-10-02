@@ -2,7 +2,7 @@ name: Periodic health check
 
 on:
   schedule:
-    - cron: '0 18 * * *'
+    - cron: '10 * * * *'
 jobs:
   periodic_health_check:
     runs-on: ubuntu-20.04
